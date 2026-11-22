@@ -1,126 +1,505 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ayan Ali Saleem, MSc Robotics & AI, ITMO University. Applying for PhD positions in perception, 3D reconstruction, and autonomous navigation. Lecturer, Computer Science, SZABIST.">
-  <meta name="author" content="Ayan Ali Saleem">
-  <meta property="og:title" content="Ayan Ali Saleem — Robotics & AI Researcher">
-  <meta property="og:description" content="MSc Robotics & AI, ITMO University. Perception, 3D reconstruction, and autonomous navigation. Applying for PhD positions.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ayanali.tech/ali_ayan_id_photo.jpg">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f766e'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='bold' fill='white' text-anchor='middle'%3EAA%3C/text%3E%3C/svg%3E">
-  <title>Ayan Ali Saleem | Robotics & AI Researcher</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=phase3c">
-  <link rel="canonical" href="https://ayanali.tech/">
-  <meta property="og:url" content="https://ayanali.tech/">
-  <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayan Ali Saleem","url":"https://ayanali.tech/","image":"https://ayanali.tech/ali_ayan_id_photo.jpg","jobTitle":"Lecturer, Computer Science; Robotics & AI Researcher","worksFor":{"@type":"CollegeOrUniversity","name":"SZABIST University"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"ITMO University"},{"@type":"CollegeOrUniversity","name":"NED University of Engineering and Technology"}],"knowsAbout":["3D perception","LiDAR-camera fusion","Neural radiance fields","Motion planning","Model predictive control","Autonomous navigation"],"sameAs":["https://github.com/ayanali827","https://www.linkedin.com/in/ayan-saleem/","https://orcid.org/0009-0004-4690-1346"],"email":"mailto:ayansaleem827@gmail.com"}</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayan Ali Saleem — Robotics & AI Researcher</title>
+<meta name="description" content="Ayan Ali Saleem, MSc Robotics & AI, ITMO University. Applying for PhD positions in perception, 3D reconstruction, and autonomous navigation. Lecturer, Computer Science, SZABIST.">
+<meta property="og:title" content="Ayan Ali Saleem — Robotics & AI Researcher">
+<meta property="og:description" content="Motion planning, 3D perception, LiDAR–camera fusion and autonomous navigation.">
+<meta property="og:image" content="https://ayanali.tech/ali_ayan_id_photo.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ayanali.tech/">
+<meta name="author" content="Ayan Ali Saleem">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://ayanali.tech/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='bold' fill='%23c6ff1a' text-anchor='middle'%3EAA%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayan Ali Saleem","url":"https://ayanali.tech/","image":"https://ayanali.tech/ali_ayan_id_photo.jpg","jobTitle":"Lecturer, Computer Science; Robotics & AI Researcher","worksFor":{"@type":"CollegeOrUniversity","name":"SZABIST University"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"ITMO University"},{"@type":"CollegeOrUniversity","name":"NED University of Engineering and Technology"}],"knowsAbout":["3D perception","LiDAR-camera fusion","Neural radiance fields","Motion planning","Model predictive control","Autonomous navigation"],"sameAs":["https://github.com/ayanali827","https://www.linkedin.com/in/ayan-saleem/","https://orcid.org/0009-0004-4690-1346"],"email":"mailto:ayansaleem827@gmail.com"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ THEME ============ */
+:root{
+  --lime:#c6ff1a; --lime2:#8dff2e; --lime-deep:#4f8f00;
+  --ink:#0b0d08; --paper:#f4f4f2; --muted:#9aa08f;
+  --glass:rgba(160,230,40,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--ink);color:#fff;overflow-x:hidden}
+a{color:inherit}
+
+/* ============ NAV ============ */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  padding:18px 5vw;transition:background .3s,backdrop-filter .3s}
+nav.scrolled{background:rgba(11,13,8,.72);backdrop-filter:blur(14px)}
+nav.light{background:rgba(244,244,242,.8);color:#111}
+.logo{font-family:Anton;font-size:22px;letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--lime)} nav.light .logo span{color:var(--lime-deep)}
+nav ul{display:flex;gap:28px;list-style:none;font-size:14px}
+nav ul a{text-decoration:none;opacity:.8}
+nav ul a:hover{opacity:1;color:var(--lime)} nav.light ul a:hover{color:var(--lime-deep)}
+
+/* ============ HERO ============ */
+.hero{position:relative;height:100vh;min-height:680px;overflow:hidden;
+  background:radial-gradient(80% 70% at 50% 35%,#1d2a08 0%,#0d1105 45%,#060704 100%)}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;
+  background:linear-gradient(transparent,#060704 85%);z-index:4;pointer-events:none}
+
+.roles{position:absolute;top:13vh;left:0;right:0;display:flex;justify-content:space-between;
+  padding:0 15vw;font-size:clamp(14px,1.6vw,22px);font-weight:300;z-index:2;opacity:0;animation:fade 1s 1.6s forwards}
+
+/* the giant word */
+.big{position:absolute;top:15vh;left:50%;transform:translateX(-50%);z-index:1;
+  font-family:Anton;font-size:clamp(110px,24vw,380px);line-height:.95;letter-spacing:.01em;white-space:nowrap;display:flex}
+.big span{display:inline-block;color:transparent;
+  background:linear-gradient(180deg,#f0ff7a 0%,var(--lime) 28%,rgba(110,220,0,.75) 62%,rgba(40,90,0,.08) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 0 rgba(198,255,26,0));
+  opacity:0;animation:letterIn .9s cubic-bezier(.2,.8,.2,1) forwards}
+.big span::before{content:attr(data-l);position:absolute;inset:0;-webkit-text-stroke:2px #f3ffc8;
+  -webkit-text-fill-color:transparent;animation:strokeOut 1.4s forwards;animation-delay:inherit}
+.big span{position:relative}
+@keyframes letterIn{
+  0%{opacity:0;transform:translateY(30px)}
+  40%{opacity:1}
+  100%{opacity:1;transform:none;filter:drop-shadow(0 0 40px rgba(170,255,30,.35))}}
+@keyframes strokeOut{0%,50%{opacity:1}100%{opacity:0}}
+
+/* photo */
+.me{position:absolute;bottom:0;left:50%;transform:translateX(-30%);height:86vh;max-height:900px;z-index:3;
+  filter:drop-shadow(0 0 2px rgba(198,255,26,.9)) drop-shadow(0 0 28px rgba(150,255,0,.25));
+  opacity:0;animation:rise 1.2s 1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{from{opacity:0;transform:translate(-30%,60px)}to{opacity:1;transform:translate(-30%,0)}}
+
+/* intro (script name) */
+.intro{position:absolute;left:7vw;top:47vh;z-index:5;opacity:0;animation:fade 1s 2s forwards}
+.intro .hi{font-family:"Great Vibes",cursive;font-size:clamp(26px,2.6vw,40px);margin-left:60px}
+.intro .name{font-family:"Great Vibes",cursive;font-size:clamp(46px,5.4vw,86px);line-height:1;color:var(--lime);
+  text-shadow:0 0 18px rgba(198,255,26,.45)}
+
+/* glass summary card */
+.summary{position:absolute;left:5vw;bottom:9vh;width:min(470px,40vw);z-index:5;
+  background:linear-gradient(135deg,rgba(170,240,40,.55),rgba(90,170,10,.35));
+  border:1px solid rgba(220,255,140,.6);border-radius:18px;padding:22px 24px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 20px 60px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.35);
+  opacity:0;animation:slideR 1s 2.4s cubic-bezier(.2,.8,.2,1) forwards}
+.summary h3{font-size:22px;font-weight:700;margin-bottom:12px}
+.summary p{background:rgba(255,255,255,.88);color:#1a1d14;border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.55}
+@keyframes slideR{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:none}}
+
+/* badge */
+.badge{position:absolute;z-index:5;left:calc(50% + 12vw);top:30vh;display:flex;align-items:center;gap:10px;
+  background:linear-gradient(90deg,#fff 55%,#e9ffb0);color:#111;border-radius:12px;padding:10px 16px;
+  box-shadow:0 0 0 1px rgba(198,255,26,.6),0 10px 30px rgba(0,0,0,.35);
+  opacity:0;animation:pop .7s 2.8s cubic-bezier(.3,1.6,.5,1) forwards}
+.badge b{font-size:28px;line-height:1}
+.badge small{display:block;font-size:11px;line-height:1.1}
+.badge i{width:1px;height:32px;background:#999}
+.badge span{font-size:14px}
+@keyframes pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+
+/* skills list */
+.skills{position:absolute;right:5vw;top:57vh;z-index:5;list-style:none;display:grid;gap:14px}
+.skills li{display:flex;align-items:center;gap:12px;font-size:clamp(14px,1.25vw,18px);opacity:0;
+  animation:slideL .7s forwards}
+.skills li svg{width:20px;height:20px;flex:none}
+.skills li .t{border-right:2px solid currentColor;padding-right:3px}
+@keyframes slideL{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+
+.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:6;font-size:12px;
+  letter-spacing:3px;color:var(--muted);opacity:0;animation:fade 1s 3.6s forwards}
+
+/* ============ LIME WIPE ============ */
+.wipe{position:relative;height:60vh;background:#060704;overflow:hidden}
+.wipe .arc{position:absolute;left:50%;top:100%;width:220vw;height:220vw;border-radius:50%;
+  transform:translate(-50%,0);background:var(--paper);
+  box-shadow:0 0 0 6vw var(--lime),0 0 120px 6vw rgba(198,255,26,.6);will-change:transform}
+
+/* ============ LIGHT SECTIONS ============ */
+.light-wrap{background:var(--paper);color:#111}
+section.block{padding:90px 6vw}
+.sec-title{text-align:center;font-size:clamp(28px,3.2vw,44px);font-weight:400;letter-spacing:-.5px;margin-bottom:12px}
+.sec-sub{text-align:center;color:#666;max-width:640px;margin:0 auto 46px;line-height:1.6}
+
+.reveal{opacity:0;transform:translateY(40px) scale(.97);transition:opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* publications */
+.pubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;max-width:1200px;margin:auto}
+.pub{background:#fff;border-radius:18px;padding:26px;box-shadow:0 10px 40px rgba(0,0,0,.06);border:1px solid #e6e6e1;
+  display:flex;flex-direction:column;gap:12px}
+.status{align-self:flex-start;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+.s-acc{background:#e7ffb3;color:#2f5a00}.s-pub{background:#d8f3ff;color:#004d70}.s-rev{background:#fff1cc;color:#7a5200}
+.pub h4{font-size:17px;line-height:1.4}
+.pub .venue{color:#666;font-size:14px}
+.pub a.link{margin-top:auto;font-size:14px;font-weight:600;text-decoration:none;color:#2f5a00}
+.pub a.link:hover{text-decoration:underline}
+
+/* projects (video-editor-style tiles) */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1240px;margin:auto}
+.proj{position:relative;border-radius:16px;overflow:hidden;min-height:300px;color:#fff;padding:24px;
+  display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;
+  box-shadow:0 18px 40px rgba(0,0,0,.18);transition:transform .4s}
+.proj:hover{transform:translateY(-6px)}
+.proj canvas,.proj img.bg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;object-fit:cover}
+.proj .repo{margin-top:14px;font-size:13px;font-weight:600;color:var(--lime);text-decoration:none}
+.proj .repo:hover{text-decoration:underline}
+.proj::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.6) 35%,rgba(0,0,0,.92))}
+.proj canvas{opacity:.6}
+.proj h4,.proj p{text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.proj .tag{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
+.proj h4{font-size:20px;margin-bottom:8px}
+.proj p{font-size:13.5px;line-height:1.5;opacity:.85}
+.proj .stack{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.proj .stack span{font-size:11px;padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)}
+.proj.wide{grid-column:span 2}
+.metrics{display:flex;gap:18px;margin:10px 0 2px;flex-wrap:wrap}
+.metrics div b{display:block;font-size:22px;color:var(--lime)}
+.metrics div small{font-size:11px;opacity:.75}
+
+/* timeline */
+.timeline{max-width:900px;margin:auto;position:relative}
+.timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:linear-gradient(var(--lime),#ddd)}
+.ti{position:relative;padding:0 0 34px 48px}
+.ti::before{content:"";position:absolute;left:5px;top:5px;width:16px;height:16px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 5px #e9ffbf}
+.ti .when{font-size:12px;color:#777;letter-spacing:.5px}
+.ti h4{font-size:18px;margin:4px 0}
+.ti p{color:#555;font-size:14.5px;line-height:1.55}
+
+/* education cards */
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;max-width:1100px;margin:auto}
+.edu .card{background:#111;color:#fff;border-radius:18px;padding:28px;position:relative;overflow:hidden}
+.edu .card::before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(var(--lime),transparent 70%);opacity:.35}
+.edu h4{font-size:20px;margin:6px 0}
+.edu .meta{color:var(--lime);font-size:13px}
+.edu p{opacity:.75;font-size:14px;line-height:1.55;margin-top:8px}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:1000px;margin:auto}
+.chips span{padding:9px 16px;border-radius:99px;background:#fff;border:1px solid #e1e1db;font-size:14px}
+
+/* ============ FOOTER / CONTACT ============ */
+footer{background:#060704;padding:110px 6vw 40px;text-align:center;position:relative;overflow:hidden}
+footer h2{font-family:Anton;font-size:clamp(60px,12vw,180px);line-height:.9;
+  background:linear-gradient(180deg,#e8ff5a,#5fd400 70%,rgba(40,90,0,.1));-webkit-background-clip:text;background-clip:text;color:transparent}
+footer p{color:var(--muted);margin:18px auto 34px;max-width:520px;line-height:1.6}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:13px 22px;border-radius:99px;text-decoration:none;font-weight:600;font-size:14px;border:1px solid rgba(198,255,26,.5);transition:.25s}
+.btn.primary{background:var(--lime);color:#111;border-color:var(--lime)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(198,255,26,.4)}
+.copy{margin-top:70px;font-size:12px;color:#555}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  nav ul{display:none}
+  .roles{padding:0 6vw;top:11vh}
+  .big{top:14vh;font-size:20.5vw}
+  .me{height:62vh;transform:translateX(-50%)} @keyframes rise{from{opacity:0;transform:translate(-50%,60px)}to{opacity:1;transform:translate(-50%,0)}}
+  .intro{top:auto;bottom:36vh;left:5vw}
+  .summary{width:90vw;left:5vw;bottom:4vh;padding:16px}
+  .summary p{font-size:12.5px}
+  .skills{display:none}
+  .badge{left:auto;right:5vw;top:26vh}
+  .proj.wide{grid-column:auto}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <div class="page-curtain" id="pageCurtain" aria-hidden="true">
-    <div class="curtain-inner">
-      <span class="curtain-label">Ayan Ali Saleem / Portfolio</span>
-      <span class="curtain-progress"><i></i></span>
-      <span class="curtain-status">Initializing / 001</span>
-    </div>
+
+<nav id="nav">
+  <a href="#top" class="logo">AYAN<span>.</span></a>
+  <ul>
+    <li><a href="#research">Publications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="roles"><span>Robotics &amp; AI Researcher</span><span>&amp;</span><span>Lecturer, SZABIST</span></div>
+
+  <h1 class="big" aria-label="Portfolio" id="big"></h1>
+
+  <img class="me" src="ayan.webp" alt="Ayan Ali Saleem">
+
+  <div class="intro">
+    <div class="hi">Hi I am</div>
+    <div class="name">Ayan Ali Saleem</div>
   </div>
-  <div class="cursor-spotlight" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"></div>
-  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
-  <div class="page-shell" id="pageShell">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <nav class="nav container" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Ayan Ali Saleem home"><span class="brand-mark">AA</span><span>Ayan Ali Saleem</span></a><span class="nav-progress" aria-hidden="true"><i id="navProgress"></i></span>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu"><span></span><span></span></button>
-      <div class="nav-links" id="navLinks">
-        <a href="#projects">01 Projects</a><a href="#experience">02 Experience</a><a href="#education">03 Education</a><a href="#publications">04 Publications</a><a href="#recognition">05 Recognition</a><a href="#skills">06 Skills</a><a href="#cv">07 Documents</a><a href="#contact">08 Contact</a>
-        <a class="nav-cv" href="mailto:ayansaleem827@gmail.com?subject=CV%20request">Request CV <span aria-hidden="true">↗</span></a>
-      </div>
-    </nav>
-  </header>
 
-  <main id="main">
-
-    <section class="hero" id="top">
-      <div class="hero-orbit hero-orbit-one" data-parallax="-0.24" aria-hidden="true"></div>
-      <div class="hero-orbit hero-orbit-two" data-parallax="-0.08" aria-hidden="true"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy" data-parallax="0.16">
-          <p class="eyebrow">Robotics &amp; AI Researcher <span class="eyebrow-dot"></span> Lecturer, Computer Science, SZABIST</p>
-          <h1 class="kinetic-title">I build the systems that let machines <em>see,</em> decide, and move.</h1>
-          <p class="hero-intro">I am a robotics and AI researcher working across LiDAR-camera perception, autonomous navigation, Bayesian state estimation, and model-based control. My MSc in Robotics &amp; AI is from ITMO University (Red Diploma, CGPA 4.85/5). Alongside my research, I teach computer science at SZABIST. I am applying for PhD positions in perception, 3D reconstruction, and autonomous navigation.</p>
-          <div class="hero-actions"><a class="button button-primary" href="#projects">View projects <span>→</span></a><a class="button button-secondary" href="mailto:ayansaleem827@gmail.com?subject=CV%20request">Request CV <span aria-hidden="true">↗</span></a></div>
-          <div class="hero-links"><a href="https://github.com/ayanali827" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/ayan-saleem/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://orcid.org/0009-0004-4690-1346" target="_blank" rel="noopener">ORCID ↗</a><a href="mailto:ayansaleem827@gmail.com">Email ↗</a></div>
-          <div class="hero-meta"><span>Perception</span><span>Navigation</span><span>Control</span></div>
-        </div>
-        <div class="hero-visual clean-portrait" aria-label="Portrait of Ayan Ali Saleem" data-parallax="-0.11">
-          <div class="portrait-wrap"><img src="ali_ayan_id_photo.jpg" alt="Portrait of Ayan Ali Saleem"></div>
-        </div>
-      </div>
-      <div class="hero-scroll" aria-hidden="true"><span>Scroll to discover</span><i>↓</i></div>
-    </section>
-
-    <section class="section scroll-section" id="research"><div class="container"><div class="section-heading"><div><p class="eyebrow accent">Research</p><h2>Three threads, one question: how does a machine see, decide, and move?</h2></div><p class="section-summary">My research is perception-to-control for autonomous ground vehicles: what the vehicle sees, how it reconstructs the world, and how it plans and controls its motion through it.</p></div>
-<div class="research-list">
-<article>
-<h3>Training-free 3D perception</h3>
-<p><strong>Method.</strong> YOLOv8m-seg instance masks projected through calibrated LiDAR extrinsics, adaptive mask erosion, DBSCAN clustering, and PCA-based 3D oriented bounding boxes — no task-specific training.</p>
-<p><strong>Tools.</strong> Python, PyTorch, Open3D, YOLOv8, KITTI.</p>
-<p><strong>Outcome.</strong> On KITTI scenes: 50.51% Car IoU and 38.63% pedestrian IoU at approximately 11 FPS with 1,874 MiB peak GPU memory. Thesis code release in preparation.</p>
-</article>
-<article>
-<h3>Depth-supervised NeRF</h3>
-<p><strong>Method.</strong> A comparative study of three depth-integration strategies for neural radiance fields: hard geometric constraints, soft depth loss, and hybrid integration.</p>
-<p><strong>Tools.</strong> Python, PyTorch, NeRF, depth supervision.</p>
-<p><strong>Outcome.</strong> Manuscript under review. Code is available on GitHub.</p>
-</article>
-<article>
-<h3>A*&ndash;DWA&ndash;MPC navigation</h3>
-<p><strong>Method.</strong> A tri-layer framework for differential-drive robots: A* global planning, Dynamic Window Approach local avoidance, and model predictive control, evaluated in MuJoCo.</p>
-<p><strong>Tools.</strong> MuJoCo, A*, DWA, MPC, Python.</p>
-<p><strong>Outcome.</strong> Published in <em>Gyroscopy and Navigation</em> (2026): position accuracy +27.46%, velocity mean error &minus;52.90%, acceleration tracking error &minus;45.22%, and attitude error &minus;65.32% in the published evaluation.</p>
-</article>
-</div></div></section>
-
-    <section class="section scroll-section" id="projects"><div class="container"><div class="section-heading"><div><p class="eyebrow accent">01 / Projects</p><h2>Research with a systems view.</h2></div><p class="section-summary">Projects spanning perception, navigation, 3D vision, LLM systems, and renewable energy. Scroll sideways to see all projects.</p></div><div class="project-pin"><div class="project-viewport"><div class="project-grid project-stage">
-      <article class="project-card project-featured glass-card" data-tilt><figure class="entry-media"><img src="assets/portfolio/project-msc-lidar-point-cloud.jpg" alt="Colored LiDAR point cloud of a street intersection captured from a moving car" loading="eager"><!-- Image source: Wikimedia Commons Ouster OS1-64 LiDAR point cloud; CC BY 4.0, Daniel L. Lu. --></figure><div class="project-top"><span class="project-number">01</span><span class="project-type">MSc thesis · 2025—26</span></div><h3>Real-Time 3D Perception for Autonomous Ground Vehicles</h3><p>A training-free pipeline combining YOLOv8m-seg, calibrated LiDAR projection, adaptive mask erosion, DBSCAN clustering, and PCA-based 3D bounding boxes for KITTI scenes. Thesis code release in preparation.</p><div class="perception-visual" aria-label="Diagram of the 3D perception pipeline"><span>YOLOv8m-seg</span><i>→</i><span>LiDAR projection</span><i>→</i><span>DBSCAN</span><i>→</i><span>3D OBB</span></div><div class="project-result"><strong><span class="count" data-count="50.51" data-suffix="%">50.51%</span> / <span class="count" data-count="38.63" data-suffix="%">38.63%</span></strong><span>Car / pedestrian IoU on KITTI</span><strong><span class="count" data-count="11" data-prefix="~" data-suffix=" FPS">~11 FPS</span></strong><span>with 1,874 MiB GPU memory</span></div><div class="chip-row"><span>Python</span><span>PyTorch</span><span>Open3D</span><span>YOLOv8</span></div><a class="project-link" href="https://github.com/ayanali827/object-detection-autonomous-navigation-yolo" target="_blank" rel="noopener">Related YOLO benchmark repository <span aria-hidden="true">↗</span></a></article>
-      <article class="project-card glass-card" data-tilt><figure class="entry-media"><img src="assets/portfolio/project-tri-nav-autonomous-robot.png" alt="TriLayer-Nav autonomous mobile robot platform used for navigation research" loading="lazy"><!-- Image source: Wikimedia Commons Autonomous Mobile Robot AMR; CC BY 4.0. --></figure><div class="project-top"><span class="project-number">02</span><span class="project-type">Navigation · 2025</span></div><h3>TriLayer-Nav</h3><p>A hybrid framework for UGV navigation in MuJoCo, integrating A* global planning, Dynamic Window Approach local avoidance, and MPC control. Published in <em>Gyroscopy and Navigation</em> (2026).</p><div class="project-result"><strong>Position accuracy +27.46%</strong><span>velocity mean error &minus;52.90% in the published evaluation</span></div><div class="chip-row"><span>MuJoCo</span><span>A*</span><span>DWA</span><span>MPC</span></div><a class="project-link" href="https://github.com/ayanali827/TriNav-Tri-Layer-Navigation-A-DWA-MPC-" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a></article><article class="project-card glass-card" data-tilt><div class="project-top"><span class="project-number">03</span><span class="project-type">Motion planning · ROS 2 · 2026</span></div><h3>AMR Obstacle Avoidance in ROS 2</h3><p>An autonomous mobile robot that plans its own path and avoids moving forklifts, with every algorithm hand-written: an A* global planner, a DWA local planner with moving-obstacle prediction, pure pursuit with an S-curve motion profile, and a custom 2D warehouse simulator in ROS 2 Humble — no Nav2, no Gazebo. Five failed avoidance strategies are documented in the README.</p><div class="project-result"><strong>19.4 s · 0 replans · 0 overlaps</strong><span>final run with 4 moving forklifts · benchmark harness across 5 layouts</span></div><div class="chip-row"><span>ROS 2</span><span>Python</span><span>A*</span><span>DWA</span><span>Pure pursuit</span></div><a class="project-link" href="https://github.com/ayanali827/amr-obstacle-avoidance" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a></article>
-      <article class="project-card glass-card" data-tilt><figure class="entry-media"><img src="assets/portfolio/project-depth-nerf-reconstruction.jpg" alt="3D scene reconstruction result from image-based geometry" loading="lazy"><!-- Image source: Wikimedia Commons Reconstruction Arc3D; CC BY-SA 3.0. --></figure><div class="project-top"><span class="project-number">04</span><span class="project-type">3D vision · 2025</span></div><h3>Depth-Supervised NeRF</h3><p>Comparative research on hard geometric constraints, soft depth loss, and hybrid depth integration for more stable 3D scene reconstruction. Manuscript under review.</p><div class="chip-row"><span>NeRF</span><span>PyTorch</span><span>3D vision</span></div><a class="project-link" href="https://github.com/ayanali827/depth-supervised-nerf-notebooks" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a></article>
-      
-      <article class="project-card glass-card" data-tilt><div class="project-top"><span class="project-number">05</span><span class="project-type">Perception benchmark · 2025</span></div><h3>YOLO Benchmark for Autonomous Navigation</h3><p>Benchmarking YOLOv8, YOLO11 and YOLO12 for object detection on a 954-image KITTI subset (763 train / 191 validation). Pedestrian is the weakest class.</p><div class="project-result"><strong>mAP@0.5: 75.6 / 74.8 / 73.2</strong><span>(v8 / v11 / v12) · 42&ndash;45 FPS on RTX 4050</span></div><div class="chip-row"><span>Python</span><span>PyTorch</span><span>YOLOv8</span><span>YOLO11</span><span>YOLO12</span></div><a class="project-link" href="https://github.com/ayanali827/object-detection-autonomous-navigation-yolo" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a></article>
-      <article class="project-card glass-card" data-tilt><div class="project-top"><span class="project-number">06</span><span class="project-type">LLM evaluation · 2025</span></div><h3>Citation Reliability in Small LLMs</h3><p>Measuring whether small language models cite real sources: 850 references across 45 topics, scored with Wilson confidence intervals and topic-level Mann-Whitney tests.</p><div class="project-result"><strong>REAL_OK 0.39 &rarr; 0.03 &rarr; 0.00</strong><span>famous &rarr; niche &rarr; recent topics</span></div><div class="chip-row"><span>Python</span><span>LLM evaluation</span><span>Statistics</span></div><a class="project-link" href="https://github.com/ayanali827/citation-reliability-small-llms" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a></article>
-      <article class="project-card glass-card" data-tilt><div class="project-top"><span class="project-number">07</span><span class="project-type">LLM systems · 2026</span></div><h3>Applied LLM Systems</h3><p>Four working LLM systems in Python with LangChain: validated structured extraction, RAG question-answering over PDFs with FAISS, a tool-using agent with safety-shaped tools, and a Streamlit chat app that combines the RAG and agent systems, all behind a multi-provider fallback chain.</p><div class="perception-visual" aria-label="Diagram of the applied LLM systems"><span>Structured extraction</span><i>→</i><span>RAG · FAISS</span><i>→</i><span>Tool agent</span><i>→</i><span>Streamlit chat</span></div><div class="project-result"><strong>54 tests passing</strong><span>offline test suite</span></div><div class="chip-row"><span>Python</span><span>LangChain</span><span>FAISS</span><span>Streamlit</span><span>Gemini</span></div><a class="project-link" href="https://github.com/ayanali827/applied-llm-systems" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a></article><article class="project-card glass-card" data-tilt><figure class="entry-media"><img src="assets/portfolio/project-hybrid-pv-solar-farm.jpg" alt="Rows of photovoltaic panels at a solar farm" loading="lazy"><!-- Image source: Wikimedia Commons Photovoltaic Panels at a Solar Farm Near Vulcan; CC BY 4.0. --></figure><div class="project-top"><span class="project-number">08</span><span class="project-type">Power systems · 2023</span></div><h3>Hybrid PV System Design</h3><p>A Simulink/MATLAB study of Constant Power Load instability using a single-phase hybrid inverter, PLL, MPPT, and precise circuit modelling.</p><div class="pv-visual" aria-label="Hybrid PV system conceptual flow"><span>PV ARRAY</span><b>↓</b><span>BOOST / MPPT</span><b>↓</b><span>DC LINK</span><b>↓</b><span>VSC · PLL · LCL</span><b>↓</b><span>GRID</span></div><div class="chip-row"><span>MATLAB</span><span>Simulink</span><span>MPPT</span></div><a class="project-link" href="https://www.linkedin.com/in/ayan-saleem/details/projects/1635541748457/single-media-viewer" target="_blank" rel="noopener">Project details <span aria-hidden="true">↗</span></a></article>
-        </div></div></div></section>
-
-    <section class="impact-stat scroll-section" aria-labelledby="impact-title"><div class="container impact-inner"><p class="eyebrow">Research signal</p><h2 id="impact-title"><strong><span class="count" data-count="50.51" data-static="true" data-suffix="%">50.51%</span></strong> Car IoU<br>on KITTI scenes.</h2><div class="impact-detail"><span class="impact-rule"></span><p>A measured result from the real-time 3D perception thesis, alongside 38.63% pedestrian IoU, approximately 11 FPS, and 1,874 MiB GPU memory.</p></div></div></section>
-
-    <section class="section section-muted scroll-section" id="experience"><div class="container"><div class="section-heading"><div><p class="eyebrow accent">02 / Experience</p><h2>Professional Experience</h2></div><p class="section-summary">Lecturer and researcher by current role; engineer by training, across renewable energy, industrial systems, and research-driven robotics.</p></div><div class="experience-grid">
-      <article class="experience-card glass-card"><div class="experience-card-content"><span class="experience-tag">CURRENT ROLE &middot; ACADEMIC</span><h3>Lecturer, Computer Science</h3><p class="company">SZABIST <span>&middot; Nov 2026 &ndash; Present</span></p><p>I teach Electronics: Digital Logic Design, Electric Circuits, Power Electronics, Power Systems, and Control Systems, and C/C++ Programming Fundamentals.</p></div></article><article class="experience-card glass-card"><div class="experience-card-content"><span class="experience-tag">RESEARCH &middot; ROBOTICS LAB</span><h3>Laboratory Engineer, BE2R Lab</h3><p class="company">ITMO University <span>&middot; Dec 2024 &ndash; Dec 2025 &middot; Saint Petersburg, Russia</span></p><p>Worked in ITMO&rsquo;s BE2R robotics lab on 3D perception and localisation research, contributing to QUORUM, GSplatLoc, R5DGS and OSMa-Bench. Taught and ran lab sessions for bachelor&rsquo;s students in robotics and AI, and co-authored research papers, including TriLayer-Nav (Gyroscopy and Navigation, 2026).</p></div></article>
-      <article class="experience-card glass-card" data-media="RESEARCH / RENEWABLE ENERGY"><figure class="entry-media"><img src="assets/portfolio/experience-sapphire-wind.jpg" alt="Technician inspecting a wind turbine blade during renewable-energy maintenance" loading="lazy"><!-- Image source: Wikimedia Commons File:Wind turbine maintenance (51689968067).jpg; public domain, U.S. Department of Energy. --></figure><div class="experience-card-content"><span class="experience-tag">ENGINEERING</span><h3>Operations Management Engineer</h3><p class="company">Sapphire Renewables <span>· Feb 2024 &ndash; Sep 2024 · Karachi, Pakistan</span></p><p>Assessed wind turbine data for predictive maintenance, supervised maintenance planning, prepared plant SOPs and breakdown reports, and analyzed performance to improve energy output.</p></div></article>
-      <article class="experience-card glass-card" data-media="NETWORKING &amp; SECURITY"><figure class="entry-media"><img src="assets/portfolio/experience-winston-network-rack.jpg" alt="Computer rack with switches and network cables" loading="lazy"><!-- Image source: Wikimedia Commons File:Computer rack with switches and cables.jpg by Yann; CC BY-SA 3.0. --></figure><div class="experience-card-content"><span class="experience-tag">NETWORKING &amp; SECURITY</span><h3>Engineering Trainee</h3><p class="company">Winston Marriot Ltd. <span>· Dec 2023 &ndash; Feb 2024 · United Kingdom</span></p><p>Configured and tested network and firewall systems as part of an R&amp;D engineering placement at Winston Marriot Ltd., a UK-based networking and cybersecurity hardware company.</p></div></article>
-      <article class="experience-card glass-card" data-media="PORT OPERATIONS / SAPT"><figure class="entry-media"><img src="assets/portfolio/experience-sapt-industrial-maintenance.jpg" alt="Interior of an industrial maintenance facility" loading="lazy"><!-- Image source: Wikimedia Commons NASA Industrial Plant maintenance facility; public domain. --></figure><div class="experience-card-content"><span class="experience-tag">MAINTENANCE ENGINEERING</span><h3>Maintenance Engineering Intern</h3><p class="company">South Asia Pakistan Terminals (SAPT) <span>· Sep 2022 &ndash; Oct 2022 · Karachi, Pakistan</span></p><p>Supported electrical maintenance and port operations, including preventive and predictive maintenance for operational equipment.</p></div></article>
-      <article class="experience-card glass-card" data-media="PLC / SCADA / UNICOL"><figure class="entry-media"><img src="assets/portfolio/experience-unicol-industrial-robot.jpg" alt="Industrial robot operating in a factory environment" loading="lazy"><!-- Image source: Wikimedia Commons industrial robot image; CC BY 3.0. --></figure><div class="experience-card-content"><span class="experience-tag">MAINTENANCE</span><h3>Maintenance Intern</h3><p class="company">Unicol Limited <span>· Feb 2022 &ndash; Mar 2022 · Mirpur Khas, Pakistan</span></p><p>Worked with PLC-based control logic, SCADA monitoring, process visualization, and electrical substations in sugar plant operations.</p></div></article>
-    </div><p class="experience-scroll-hint" aria-hidden="true"><span>Scroll to explore all experience cards</span><b>→</b></p></div></section>
-
-    <section class="section section-dark scroll-section" id="education"><div class="container education-grid"><div><p class="eyebrow lime">03 / Education</p><h2>Grounded in engineering.<br>Oriented toward the future.</h2></div><div class="education-list"><div class="education-item"><span class="education-year">2024—26</span><div><h3>MSc Robotics &amp; Artificial Intelligence</h3><p>ITMO University · Saint Petersburg, Russia</p><small>CGPA <span class="count" data-count="4.85" data-suffix=" / 5">4.85 / 5</span> · Red Diploma</small></div></div><div class="education-item"><span class="education-year">2019—23</span><div><h3>BE Electrical Engineering</h3><p>NED University of Engineering and Technology · Karachi, Pakistan</p></div></div></div></div></section>
-
-    <section class="section publications scroll-section" id="publications"><div class="container"><div class="section-heading"><div><p class="eyebrow accent">04 / Publications</p><h2>Research in the record.</h2></div><p class="section-summary">Two current research outputs: one published article and one paper under review.</p></div><div class="publication-list"><article class="publication"><span class="pub-number">01</span><div><p class="pub-status">Published · 2026</p><h3>TriLayer-Nav: A Tri-Layer Navigation Framework Integrating A*, Dynamic Window Approach, and Model Predictive Control for Differential-Drive Robots</h3><p>Mughal, U. A. B.; Ali, A.; Urwa; Abramchuk, M. V. <em>Gyroscopy and Navigation</em>, 2026, Vol. 17, No. 1, pp. 24&ndash;33. DOI: 10.1134/S2075108726700094</p><a class="toggle-control publication-link" href="https://link.springer.com/article/10.1134/S2075108726700094" target="_blank" rel="noopener">View on Springer <span aria-hidden="true">↗</span></a></div></article><article class="publication"><span class="pub-number">02</span><div><p class="pub-status">Under review · 2026</p><h3>Improving NeRF Training Quality Using Depth Data: A Comparative Study of Depth-Integration Strategies for 3D Scene Reconstruction</h3><p>Manuscript under review.</p><a class="toggle-control" href="https://github.com/ayanali827/depth-supervised-nerf-notebooks" target="_blank" rel="noopener">Code on GitHub <span aria-hidden="true">↗</span></a></div></article></div></div></section>
-
-    <section class="section section-muted compact-sections scroll-section" id="recognition"><div class="container compact-grid"><div><p class="eyebrow accent">05 / Recognition</p><h2>Beyond the lab.</h2></div><div class="recognition-list"><div><strong>2nd place</strong><span>ObninskTech Winter School · Rosatom · 2025</span></div><div><strong>HackAtom winner</strong><span>NukeNet · ObninskTech Summer School · 2025</span></div><div><strong>Global participant</strong><span>World Atomic Week · ROSATOM · 35+ countries, 1,200+ participants</span></div></div></div><div class="container skills-line ticker" aria-label="Technical toolkit"><div class="ticker-track"><p>Technical toolkit</p><span>Python</span><span>C++</span><span>C</span><span>ROS</span><span>SLAM</span><span>MATLAB</span><span>ETAP</span><span>Gazebo</span><span>AutoCAD</span><span>Signal processing</span></div></div></section>
-
-    <section class="section section-muted scroll-section" id="skills"><div class="container"><div class="section-heading"><div><p class="eyebrow accent">06 / Technical matrix</p><h2>Tools for the full stack.</h2></div><p class="section-summary">A practical toolkit across electrical engineering, robotics, AI, and programming.</p></div><div class="skills-matrix"><div><span>ENGINEERING</span><p>MATLAB · Simulink · ETAP · Power systems · Renewable energy</p></div><div><span>ROBOTICS</span><p>ROS · MuJoCo · Gazebo · SLAM · Robot control · 3D perception</p></div><div><span>AI / ML</span><p>Python · PyTorch · Computer vision · YOLO · NeRF · Sensor fusion</p></div><div><span>PROGRAMMING</span><p>Python · C++ · C · JavaScript · Open3D · Shapely</p></div></div><div class="certifications"><span>CERTIFICATIONS</span><p>Deep Learning Specialization · Google Advanced Data Analytics · IBM AI Engineering · IoT Programming · Data Science &amp; Excel Foundations</p></div></div></section>
-
-    <section class="section section-dark cv-section scroll-section" id="cv"><div class="container cv-grid"><div><p class="eyebrow lime">07 / Documents</p><h2>Take the work<br>with you.</h2><p>My current resume and Europass CV, kept in sync with my LinkedIn profile.</p></div><div class="cv-links"><a href="mailto:ayansaleem827@gmail.com?subject=CV%20request"><span>CV</span><strong>Request my current CV ↗</strong></a></div></div></section>
-
-    <section class="contact section scroll-section" id="contact"><div class="container contact-inner"><p class="eyebrow lime">08 / Contact</p><h2>Let’s build something<br><em>that moves.</em></h2><p>I am open to PhD positions and research collaborations in perception, 3D reconstruction, and autonomous navigation, and to engineering conversations in robotics, autonomy, and intelligent systems.</p><a class="contact-email" href="mailto:ayansaleem827@gmail.com">ayansaleem827@gmail.com <span aria-hidden="true">↗</span></a><div class="social-links"><a href="https://github.com/ayanali827" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/ayan-saleem/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:ayansaleem827@gmail.com?subject=CV%20request">Request CV ↗</a></div></div></section>
-  </main>
-  <footer class="footer"><div class="container"><a class="footer-name" href="#top">Ayan Ali Saleem</a><div class="footer-links"><a href="mailto:ayansaleem827@gmail.com">Email</a><a href="https://github.com/ayanali827" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/ayan-saleem/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:ayansaleem827@gmail.com?subject=CV%20request">CV ↗</a></div><span>© 2026 Ayan Ali Saleem</span></div></footer>
+  <div class="summary">
+    <h3>Professional Summary</h3>
+    <p>I build the systems that let machines see, decide, and move: LiDAR–camera perception, autonomous navigation, state estimation and model-based control. MSc Robotics &amp; AI, ITMO University (Red Diploma). I teach computer science at SZABIST and am applying for PhD positions.</p>
   </div>
-  <script src="script.js"></script>
+
+  <div class="badge"><div><b>4.85</b><small>/ 5 CGPA</small></div><i></i><span>MSc · Red Diploma</span></div>
+
+  <ul class="skills" id="skills"></ul>
+
+  <div class="scroll-hint">SCROLL ↓</div>
+</header>
+
+<div class="wipe" id="wipe"><div class="arc" id="arc"></div></div>
+
+<div class="light-wrap">
+
+<!-- ============ RESEARCH ============ -->
+<section class="block" id="research">
+  <h2 class="sec-title reveal">Research &amp; Publications</h2>
+  <p class="sec-sub reveal">Perception-to-control for autonomous ground vehicles: what the vehicle sees, how it reconstructs the world, and how it moves through it.</p>
+  <div class="pubs" style="max-width:900px">
+    <article class="pub reveal">
+      <span class="status s-acc">Published · 2026</span>
+      <h4>TriLayer-Nav: A Tri-Layer Navigation Framework Integrating A*, Dynamic Window Approach, and Model Predictive Control for Differential-Drive Robots</h4>
+      <div class="venue">Mughal, U. A. B.; Ali, A.; Urwa; Abramchuk, M. V. — <i>Gyroscopy and Navigation</i>, 2026, Vol. 17, No. 1, pp. 24–33</div>
+      <a class="link" href="https://link.springer.com/article/10.1134/S2075108726700094" target="_blank" rel="noopener">View on Springer →</a>
+    </article>
+    <article class="pub reveal">
+      <span class="status s-rev">Under review · 2026</span>
+      <h4>Improving NeRF Training Quality Using Depth Data: A Comparative Study of Depth-Integration Strategies for 3D Scene Reconstruction</h4>
+      <div class="venue">Manuscript under review</div>
+      <a class="link" href="https://github.com/ayanali827/depth-supervised-nerf-notebooks" target="_blank" rel="noopener">Code on GitHub →</a>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="block" id="projects" style="padding-top:20px">
+  <h2 class="sec-title reveal">Selected Projects</h2>
+  <p class="sec-sub reveal">Perception, navigation, 3D vision, LLM systems and renewable energy.</p>
+  <div class="projects">
+    <article class="proj wide reveal">
+      <img class="bg" src="assets/portfolio/project-msc-lidar-point-cloud.jpg" alt="" loading="lazy">
+      <div class="tag">MSc thesis · 2025–26</div>
+      <h4>Real-Time 3D Perception for Autonomous Ground Vehicles</h4>
+      <p>Training-free pipeline: YOLOv8m-seg → calibrated LiDAR projection → adaptive mask erosion → DBSCAN clustering → PCA 3D oriented boxes on KITTI scenes. Thesis code release in preparation.</p><div class="metrics"><div><b>50.51%</b><small>Car IoU</small></div><div><b>38.63%</b><small>Pedestrian IoU</small></div><div><b>~11 FPS</b><small>runtime</small></div><div><b>1,874 MiB</b><small>GPU memory</small></div></div>
+      <div class="stack"><span>Python</span><span>PyTorch</span><span>Open3D</span><span>YOLOv8</span></div><a class="repo" href="https://github.com/ayanali827/object-detection-autonomous-navigation-yolo" target="_blank" rel="noopener">Related YOLO benchmark ↗</a>
+    </article>
+    <article class="proj  reveal">
+      <img class="bg" src="assets/portfolio/project-tri-nav-autonomous-robot.png" alt="" loading="lazy">
+      <div class="tag">Navigation · 2025</div>
+      <h4>TriLayer-Nav</h4>
+      <p>A* global planning, DWA local avoidance and MPC control for UGV navigation in MuJoCo. Published in Gyroscopy and Navigation (2026).</p><div class="metrics"><div><b>+27.46%</b><small>position accuracy</small></div><div><b>−52.90%</b><small>velocity mean error</small></div></div>
+      <div class="stack"><span>MuJoCo</span><span>A*</span><span>DWA</span><span>MPC</span></div><a class="repo" href="https://github.com/ayanali827/TriNav-Tri-Layer-Navigation-A-DWA-MPC-" target="_blank" rel="noopener">View repository ↗</a>
+    </article>
+    <article class="proj  reveal" data-viz="path">
+      <canvas></canvas>
+      <div class="tag">Motion planning · ROS 2 · 2026</div>
+      <h4>AMR Obstacle Avoidance in ROS 2</h4>
+      <p>Every algorithm hand-written: A* global planner, DWA with moving-obstacle prediction, pure pursuit with S-curve profile, and a custom 2D warehouse simulator. No Nav2, no Gazebo.</p><div class="metrics"><div><b>19.4 s</b><small>final run</small></div><div><b>0</b><small>replans / overlaps</small></div></div>
+      <div class="stack"><span>ROS 2</span><span>Python</span><span>A*</span><span>DWA</span></div><a class="repo" href="https://github.com/ayanali827/amr-obstacle-avoidance" target="_blank" rel="noopener">View repository ↗</a>
+    </article>
+    <article class="proj  reveal">
+      <img class="bg" src="assets/portfolio/project-depth-nerf-reconstruction.jpg" alt="" loading="lazy">
+      <div class="tag">3D vision · 2025</div>
+      <h4>Depth-Supervised NeRF</h4>
+      <p>Hard geometric constraints vs. soft depth loss vs. hybrid depth integration for more stable 3D scene reconstruction. Manuscript under review.</p>
+      <div class="stack"><span>NeRF</span><span>PyTorch</span><span>3D vision</span></div><a class="repo" href="https://github.com/ayanali827/depth-supervised-nerf-notebooks" target="_blank" rel="noopener">View repository ↗</a>
+    </article>
+    <article class="proj  reveal" data-viz="boxes">
+      <canvas></canvas>
+      <div class="tag">Perception benchmark · 2025</div>
+      <h4>YOLO Benchmark for Autonomous Navigation</h4>
+      <p>YOLOv8, YOLO11 and YOLO12 on a 954-image KITTI subset (763 train / 191 val). Pedestrian is the weakest class.</p><div class="metrics"><div><b>75.6 / 74.8 / 73.2</b><small>mAP@0.5 (v8/v11/v12)</small></div><div><b>42–45 FPS</b><small>RTX 4050</small></div></div>
+      <div class="stack"><span>PyTorch</span><span>YOLOv8</span><span>YOLO11</span><span>YOLO12</span></div><a class="repo" href="https://github.com/ayanali827/object-detection-autonomous-navigation-yolo" target="_blank" rel="noopener">View repository ↗</a>
+    </article>
+    <article class="proj  reveal" data-viz="bars">
+      <canvas></canvas>
+      <div class="tag">LLM evaluation · 2025</div>
+      <h4>Citation Reliability in Small LLMs</h4>
+      <p>Do small language models cite real sources? 850 references across 45 topics, Wilson confidence intervals and topic-level Mann-Whitney tests.</p><div class="metrics"><div><b>0.39 → 0.00</b><small>REAL_OK, famous → recent</small></div></div>
+      <div class="stack"><span>Python</span><span>LLM evaluation</span><span>Statistics</span></div><a class="repo" href="https://github.com/ayanali827/citation-reliability-small-llms" target="_blank" rel="noopener">View repository ↗</a>
+    </article>
+    <article class="proj  reveal" data-viz="graph">
+      <canvas></canvas>
+      <div class="tag">LLM systems · 2026</div>
+      <h4>Applied LLM Systems</h4>
+      <p>Structured extraction, RAG over PDFs with FAISS, a tool-using agent and a Streamlit chat app, behind a multi-provider fallback chain.</p><div class="metrics"><div><b>54</b><small>offline tests passing</small></div></div>
+      <div class="stack"><span>LangChain</span><span>FAISS</span><span>Streamlit</span><span>Gemini</span></div><a class="repo" href="https://github.com/ayanali827/applied-llm-systems" target="_blank" rel="noopener">View repository ↗</a>
+    </article>
+    <article class="proj  reveal">
+      <img class="bg" src="assets/portfolio/project-hybrid-pv-solar-farm.jpg" alt="" loading="lazy">
+      <div class="tag">Power systems · 2023</div>
+      <h4>Hybrid PV System Design</h4>
+      <p>Simulink/MATLAB study of Constant Power Load instability with a single-phase hybrid inverter, PLL and MPPT.</p>
+      <div class="stack"><span>MATLAB</span><span>Simulink</span><span>MPPT</span></div><a class="repo" href="https://www.linkedin.com/in/ayan-saleem/details/projects/1635541748457/single-media-viewer" target="_blank" rel="noopener">Project details ↗</a>
+    </article>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="block" id="experience">
+  <h2 class="sec-title reveal">Experience</h2>
+  <p class="sec-sub reveal">Lecturer and researcher by current role; engineer by training.</p>
+  <div class="timeline">
+    <div class="ti reveal"><div class="when">Nov 2026 – Present · Current role</div><h4>Lecturer, Computer Science · SZABIST</h4>
+      <p>Teaching Digital Logic Design, Electric Circuits, Power Electronics, Power Systems, Control Systems, and C/C++ Programming Fundamentals.</p></div>
+    <div class="ti reveal"><div class="when">Dec 2024 – Dec 2025 · Saint Petersburg</div><h4>Laboratory Engineer · BE2R Lab, ITMO University</h4>
+      <p>3D perception and localisation research on QUORUM, GSplatLoc, R5DGS and OSMa-Bench. Taught and ran lab sessions for bachelor's students and co-authored TriLayer-Nav.</p></div>
+    <div class="ti reveal"><div class="when">Feb – Sep 2024 · Karachi</div><h4>Operations Management Engineer · Sapphire Renewables</h4>
+      <p>Wind-turbine data assessment for predictive maintenance, maintenance planning, plant SOPs, breakdown reports and energy-output analysis.</p></div>
+    <div class="ti reveal"><div class="when">Dec 2023 – Feb 2024 · United Kingdom</div><h4>Engineering Trainee · Winston Marriot Ltd.</h4>
+      <p>Configured and tested network and firewall systems in an R&amp;D engineering placement.</p></div>
+    <div class="ti reveal"><div class="when">Sep – Oct 2022 · Karachi</div><h4>Maintenance Engineering Intern · South Asia Pakistan Terminals</h4>
+      <p>Electrical maintenance and port operations, preventive and predictive maintenance.</p></div>
+    <div class="ti reveal"><div class="when">Feb – Mar 2022 · Mirpur Khas</div><h4>Maintenance Intern · Unicol Limited</h4>
+      <p>PLC control logic, SCADA monitoring, process visualisation and electrical substations in sugar plant operations.</p></div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="block" id="education" style="padding-top:20px">
+  <h2 class="sec-title reveal">Education</h2>
+  <p class="sec-sub reveal">&nbsp;</p>
+  <div class="edu">
+    <div class="card reveal"><div class="meta">2024 – 2026 · Saint Petersburg</div>
+      <h4>MSc Robotics &amp; AI — ITMO University</h4>
+      <p>CGPA 4.85 / 5 · Red Diploma. Faculty of Control Systems and Robotics.</p></div>
+    <div class="card reveal"><div class="meta">2019 – 2023 · Karachi</div>
+      <h4>BE Electrical Engineering — NED University</h4>
+      <p>NED University of Engineering and Technology. Thesis: Hybrid PV System Design &amp; Smart Automation.</p></div>
+  </div>
+</section>
+
+<!-- ============ HONOURS & SKILLS ============ -->
+<section class="block" style="padding-top:20px">
+  <h2 class="sec-title reveal">Honours &amp; Programs</h2>
+  <p class="sec-sub reveal">&nbsp;</p>
+  <div class="chips reveal">
+    <span>🥈 ObninskTech Winter School — 2nd place (2025)</span>
+    <span>🏆 HackAtom winner — NukeNet, ObninskTech Summer School (2025)</span>
+    <span>🌍 World Atomic Week, ROSATOM — 35+ countries (2025)</span>
+    <span>DeepLearning.AI Deep Learning Specialization</span>
+    <span>IBM AI Engineering</span>
+    <span>Google Advanced Data Analytics</span><span>IoT Programming</span>
+  </div>
+  <h2 class="sec-title reveal" style="margin-top:70px">Toolbox</h2>
+  <p class="sec-sub reveal">&nbsp;</p>
+  <div class="chips reveal">
+    <span>Python</span><span>C++</span><span>C</span><span>PyTorch</span><span>ROS / ROS 2</span><span>MuJoCo</span><span>Gazebo</span><span>SLAM</span>
+    <span>Open3D</span><span>YOLO</span><span>NeRF</span><span>Sensor fusion</span><span>LangChain</span><span>MATLAB / Simulink</span><span>ETAP</span>
+  </div>
+</section>
+
+</div>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact">
+  <h2>LET'S BUILD</h2>
+  <p>Open to PhD positions and research collaborations in perception, 3D reconstruction and autonomous navigation.</p>
+  <div class="btns">
+    <a class="btn primary" href="mailto:ayansaleem827@gmail.com">ayansaleem827@gmail.com</a>
+    <a class="btn" href="https://www.linkedin.com/in/ayan-saleem/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/ayanali827" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://orcid.org/0009-0004-4690-1346" target="_blank" rel="noopener">ORCID</a>
+    <a class="btn" href="mailto:ayansaleem827@gmail.com?subject=CV%20request">Request CV ↗</a>
+  </div>
+  <div class="copy">© <span id="yr"></span> Ayan Ali Saleem · Karachi, Pakistan</div>
+</footer>
+
+<script>
+/* ---------- Giant word: letters appear one by one (outline → neon fill) ---------- */
+const word = "PORTFOLIO", big = document.getElementById('big');
+[...word].forEach((ch,i)=>{
+  const s=document.createElement('span'); s.textContent=ch; s.dataset.l=ch;
+  s.style.animationDelay=(0.12*i)+'s'; big.appendChild(s);
+});
+
+/* ---------- Skills list with coloured sparkles + typed text ---------- */
+const skills=[["Motion Planning","#c6ff1a"],["3D Perception","#36e0ff"],["LiDAR–Camera Fusion","#4d8bff"],
+              ["NeRF & 3D Reconstruction","#d63bff"],["Agentic AI","#ff3b5c"]];
+const ul=document.getElementById('skills');
+const star=c=>`<svg viewBox="0 0 24 24"><path fill="${c}" d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z" style="filter:drop-shadow(0 0 6px ${c})"/></svg>`;
+skills.forEach(([t,c],i)=>{
+  const li=document.createElement('li'); li.style.animationDelay=(3+i*.25)+'s';
+  li.innerHTML=star(c)+`<span class="t" style="color:#fff;border-color:${c}"></span>`; ul.appendChild(li);
+  const span=li.querySelector('.t'); let k=0;
+  setTimeout(()=>{const iv=setInterval(()=>{span.textContent=t.slice(0,++k); if(k>=t.length)clearInterval(iv)},40)},(3+i*.25)*1000);
+});
+
+/* ---------- Scroll: nav state + lime arc wipe ---------- */
+const nav=document.getElementById('nav'), wipe=document.getElementById('wipe'), arc=document.getElementById('arc');
+function onScroll(){
+  const y=scrollY; nav.classList.toggle('scrolled',y>40);
+  const r=wipe.getBoundingClientRect();
+  // p: 0 when the wipe section enters from the bottom, 1 when its top reaches 15% of the viewport
+  const p=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*0.85)));
+  arc.style.transform=`translate(-50%,${-p*(r.height+innerWidth*0.06)}px)`;
+  nav.classList.toggle('light', document.querySelector('.light-wrap').getBoundingClientRect().top<60 &&
+                                document.getElementById('contact').getBoundingClientRect().top>60);
+}
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+/* ---------- Reveal on scroll ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=((i%4)*.08)+'s';io.observe(el)});
+
+/* ---------- Animated project "thumbnails" (drawn, no stock footage) ---------- */
+const viz={
+  lidar(ctx,w,h,t){ // rotating point cloud with boxes
+    ctx.fillStyle='#07140a';ctx.fillRect(0,0,w,h);
+    for(let i=0;i<900;i++){const a=i*2.399+t*.2, r=(i%60)/60*w*.6+20, x=w/2+Math.cos(a)*r, y=h*.45+Math.sin(a)*r*.28;
+      ctx.fillStyle=`hsla(${80+r/4},100%,60%,${.25+.5*(1-r/(w*.6))})`;ctx.fillRect(x,y,2,2)}
+    ctx.strokeStyle='#c6ff1a';ctx.lineWidth=2;
+    [[.25,.38],[.62,.32],[.78,.48]].forEach(([fx,fy],k)=>{const s=40+k*10;ctx.strokeRect(w*fx+Math.sin(t+k)*6,h*fy,s*1.6,s)});
+  },
+  path(ctx,w,h,t){ctx.fillStyle='#0c1a10';ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle='rgba(198,255,26,.15)';for(let x=0;x<w;x+=24){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}
+    for(let y=0;y<h;y+=24){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+    ctx.fillStyle='#2a3a20';[[.3,.2,.08,.4],[.6,.45,.08,.5],[.15,.65,.3,.07]].forEach(([a,b,c,d])=>ctx.fillRect(a*w,b*h,c*w,d*h));
+    ctx.strokeStyle='#c6ff1a';ctx.lineWidth=3;ctx.beginPath();
+    const pts=[[.08,.85],[.22,.55],[.48,.3],[.52,.15],[.8,.3],[.9,.12]];
+    pts.forEach(([x,y],i)=>i?ctx.lineTo(x*w,y*h):ctx.moveTo(x*w,y*h));ctx.stroke();
+    const s=(t*.15)%1,seg=Math.floor(s*(pts.length-1)),f=s*(pts.length-1)-seg,A=pts[seg],B=pts[seg+1];
+    ctx.fillStyle='#fff';ctx.beginPath();ctx.arc((A[0]+(B[0]-A[0])*f)*w,(A[1]+(B[1]-A[1])*f)*h,7,0,7);ctx.fill();
+  },
+  rays(ctx,w,h,t){const g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#1b0b2e');g.addColorStop(1,'#08202a');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+    for(let i=0;i<14;i++){const y=h*.15+i*h*.05;ctx.strokeStyle=`hsla(${190+i*8},90%,65%,.5)`;ctx.beginPath();ctx.moveTo(20,h*.5);
+      ctx.lineTo(w-20,y+Math.sin(t+i)*8);ctx.stroke();
+      for(let k=1;k<6;k++){const x=20+(w-40)*k/6,yy=h*.5+(y-h*.5)*k/6;ctx.fillStyle=`hsla(${280-k*20},90%,70%,.8)`;ctx.fillRect(x,yy,3,3)}}
+  },
+  boxes(ctx,w,h,t){ctx.fillStyle='#141414';ctx.fillRect(0,0,w,h);
+    ctx.fillStyle='#222';ctx.fillRect(0,h*.55,w,h*.45);
+    [['car','#c6ff1a',.1,.4,.3,.2],['ped','#36e0ff',.55,.25,.08,.35],['car','#c6ff1a',.7,.45,.22,.15]].forEach(([l,c,x,y,bw,bh],k)=>{
+      ctx.strokeStyle=c;ctx.lineWidth=2;const dx=Math.sin(t*.6+k)*8;ctx.strokeRect(x*w+dx,y*h,bw*w,bh*h);
+      ctx.fillStyle=c;ctx.fillRect(x*w+dx,y*h-16,44,16);ctx.fillStyle='#000';ctx.font='11px Inter';ctx.fillText(l,x*w+dx+4,y*h-4)});
+  },
+  graph(ctx,w,h,t){ctx.fillStyle='#160a1c';ctx.fillRect(0,0,w,h);
+    const n=8,P=[...Array(n)].map((_,i)=>[w/2+Math.cos(i/n*6.283+t*.2)*w*.3,h*.42+Math.sin(i/n*6.283+t*.2)*h*.25]);
+    ctx.strokeStyle='rgba(255,90,200,.35)';P.forEach(a=>P.forEach(b=>{ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke()}));
+    P.forEach((p,i)=>{ctx.fillStyle=i==0?'#c6ff1a':'#ff4fd8';ctx.beginPath();ctx.arc(...p,i==0?9:6,0,7);ctx.fill()});
+  },
+  sigma(ctx,w,h,t){ctx.fillStyle='#0a1424';ctx.fillRect(0,0,w,h);
+    for(let k=0;k<4;k++){const cx=w*(.2+k*.2),cy=h*.4+Math.sin(t+k)*15;ctx.strokeStyle=`rgba(54,224,255,${.3+k*.15})`;
+      ctx.beginPath();ctx.ellipse(cx,cy,30+k*6,18+k*4,.4,0,7);ctx.stroke();
+      [[0,0],[1,0],[-1,0],[0,1],[0,-1]].forEach(([a,b])=>{ctx.fillStyle='#c6ff1a';ctx.fillRect(cx+a*(30+k*6)*.7-2,cy+b*(18+k*4)*.7-2,4,4)})}
+  },
+  stereo(ctx,w,h,t){const cw=w/40;for(let x=0;x<40;x++)for(let y=0;y<Math.ceil(h/cw);y++){
+      const d=Math.sin(x*.25+t*.5)*Math.cos(y*.3)+(Math.hypot(x-20,y-6)<6?1.2:0);
+      ctx.fillStyle=`hsl(${240-(d+1)*80},90%,${25+(d+1)*15}%)`;ctx.fillRect(x*cw,y*cw,cw+1,cw+1)}
+  },
+  bars(ctx,w,h,t){ctx.fillStyle='#1a140a';ctx.fillRect(0,0,w,h);
+    for(let i=0;i<12;i++){const v=.25+.55*Math.abs(Math.sin(i*1.7+t*.4));ctx.fillStyle=i%3?'rgba(255,190,60,.7)':'#c6ff1a';
+      ctx.fillRect(20+i*(w-40)/12,h*.6-v*h*.45,(w-40)/12-6,v*h*.45)}
+  }
+};
+const tiles=[...document.querySelectorAll('.proj[data-viz]')].map(el=>{const c=el.querySelector('canvas');return{el,c,ctx:c.getContext('2d'),f:viz[el.dataset.viz]}});
+function fit(){tiles.forEach(o=>{const r=o.el.getBoundingClientRect();o.c.width=r.width;o.c.height=r.height})}
+addEventListener('resize',fit);fit();
+tiles.forEach(o=>o.f(o.ctx,o.c.width,o.c.height,0));
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+(function loop(ts){const t=ts/1000;tiles.forEach(o=>{const r=o.el.getBoundingClientRect();
+  if(r.bottom>0&&r.top<innerHeight)o.f(o.ctx,o.c.width,o.c.height,t)}); if(!still)requestAnimationFrame(loop)})(0);
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
